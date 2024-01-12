@@ -1,6 +1,6 @@
 # No Broker Project
 
-![No Broker Project Index Page](./Public/assets/indexpage.jpg)
+![No Broker Project Logo](image-url)
 
 ## Project Overview
 
@@ -30,74 +30,37 @@ The primary objective of this project is to create an online platform for repair
 
 ## Screenshots
 
+### Dashboard
+
+![Dashboard](dashboard-image-url)
+
 ### Signup Page
 
-![Signup Modal](./Public/assets/signup%20modal.jpg)
+![Signup Page](signup-image-url)
 
 ### Login Page
 
-![Login Modal](./Public/assets/login%20modal.jpg)
-
-### Forget Password Modal
-
-![Forget Password Modal](./Public/assets/forget%20password%20modal.jpg)
-
+![Login Page](login-image-url)
 
 ### Service Provider Dashboard
 
-![Service Provider Dashboard](./Public/assets/provider%20dashboard.jpg)
+![Service Provider Dashboard](service-provider-dashboard-image-url)
 
 ### Service Provider Profile
 
-![Service Provider Profile](./Public/assets/provider%20form.jpg)
-
-### Service Provider Availing Service Modal
-
-![Avail Service](./Public/assets/Avail%20Service.jpg)
-
-### Service Provider Service Manager
-
-![Service Provider Service Manager](./Public/assets/service%20manager.jpg)
-
-### Service Provider Booking Requests
-
-![Service Provider Profile](./Public/assets/provide%20rbookings.jpg)
+![Service Provider Profile](service-provider-profile-image-url)
 
 ### Customer Dashboard
 
-![Customer Dashboard](./Public/assets/customer-dashboard.jpg)
+![Customer Dashboard](customer-dashboard-image-url)
 
 ### Customer Profile
 
-![Customer Profile](./Public/assets/customer-form.jpg)
-
-### Finding Service Provider
-
-![Finding Provider](./Public/assets/customer-finding-provider.jpg)
-
-### Customer Book Service 
-
-![Book Services](./Public/assets/customer-book-service.jpg)
-
-### Customer Booking Requests
-
-![Customer Booking Requests](./Public/assets/customer-requests.jpg)
-
-### Change Current Password
-
-![Change Current PAssword](./Public/assets/change%20password.jpg)
+![Customer Profile](customer-profile-image-url)
 
 ### Admin Dashboard
 
-![Admin Dashboard](./Public/assets/admin%20Dashboard.jpg)
-
-### Admin Provider Data
-
-![Admin Provider Data](./Public/assets/admin%20provider%20data.jpg)
-
-### Admin Customer Data
-
-![Admin Customer Data](./Public/assets/admin%20customer%20data.jpg)
+![Admin Dashboard](admin-dashboard-image-url)
 
 ## Features
 
@@ -143,7 +106,7 @@ The primary objective of this project is to create an online platform for repair
 
 
 ## Contribution
-Feel free to review the code and please help me to figure out issues (the project is not hosted yet ). Let's work together to make the No Broker Project even better!
+Feel free to contribute, report issues by reviewing the code, or suggest improvements. Let's work together to make the No Broker Project even better!
 
 ## Future Enhancements
 - Implement a rating system for service providers.
