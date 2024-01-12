@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="CSS/header-footer.css" />
+  <link rel="stylesheet" href="CSS/animation.css">
+  <link rel="icon" type="image/x-icon" href="pics/index-favi.png" sizes="">
+  
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+  <style>
+    .footer_section {
+      background-color: #0a0f43;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      //=============================Taking active user email id from localStorage object========================//
+
+      const showActUsrEmail = () => {
+        var au = localStorage.getItem("activeUser");
+
+        if (au == undefined) {
+          location.href = "index.html";
+          return;
+        }
+
+        console.log(au);
+
+        $("#provider-welcome").html(au);
+        $("#txtEmail").val(au).attr("readonly", true);
+      };
+
+      showActUsrEmail();
+
+      //===============================================Logout Button================================================//
+
+      $("#logout").click(function () {
+        localStorage.removeItem("activeUser");
+        location.href = "index.html";
+      });
+
+      //===========================Avail Services===============================================================//
+
+      $("#btn-avail").click(function () {
+        var obj = {
+          type: "get",
+          url: "/avail-services",
+          data: {
+            aEmail: $("#txtemail").val(),
+            aType: $("#txtType").val(),
+            // aCity:$("#txtCity").val(),
+            aCharges: $("#txtCharges").val(),
+            aFrom: $("#timeFrom").val(),
+            aTo: $("#timeTo").val(),
+            aDesp: $("#txtDesp").val(),
+          },
+        };
+
+        // alert(JSON.stringify(obj.data));
+
+        $.ajax(obj)
+          .done(function (resp) {
+            alert(resp);
+          })
+          .fail(function (resp) {
+            alert(err);
+          });
+      });
+
+      //========================================================================================================
+
+      //=============Update Password==============================================//
+
+      $("#updateBtn").click(function () {
+        var email = $("#txtEmail").val();
+        var oldPwd = $("#oldPassword").val();
+        var newPwd = $("#newPassword").val();
+        var conPwd = $("#confirmPassword").val();
+
+        // alert(email+" " + oldPwd + " " + newPwd + " " + conPwd );
+
+        var obj = {
+          type: "get",
+          url: "/update-pwd",
+
+          data: {
+            aEmail: email,
+            aoldPwd: oldPwd,
+            anewPwd: newPwd,
+          },
+        };
+
+        if (oldPwd != newPwd && newPwd == conPwd) {
+          // alert("passowrd Updated");
+          $.ajax(obj)
+            .done(function (resp) {
+              alert(resp);
+              $("#res").html(resp);
+            })
+            .fail(function (err) {
+              alert(JSON.stringify(err));
+              $("#res").html(err);
+            });
+        } else if (oldPwd == newPwd) {
+          alert("Old and new password are same");
+          $("#res").html("Old and new password are same");
+        } else {
+          alert("new and confirm password are different");
+          $("#res").html("new and confirm password are different");
+        }
+      });
+
+      //====================== Password Hide Unhide=======================//
+      $("#opwd").click(function () {
+        var type = $("#oldPassword").attr("type");
+
+        if (type == "password") {
+          $("#oldPassword").attr("type", "text");
+          $(this).addClass("fa-eye").removeClass("fa-eye-slash");
+        } else {
+          $("#oldPassword").attr("type", "password");
+          $(this).addClass("fa-eye-slash").removeClass("fa-eye");
+        }
+      });
+
+      $("#npwd").click(function () {
+        var type = $("#newPassword").attr("type");
+
+        if (type == "password") {
+          $("#newPassword").attr("type", "text");
+          $(this).addClass("fa-eye").removeClass("fa-eye-slash");
+        } else {
+          $("#newPassword").attr("type", "password");
+          $(this).addClass("fa-eye-slash").removeClass("fa-eye");
+        }
+      });
+
+      $("#cpwd").click(function () {
+        var type = $("#confirmPassword").attr("type");
+
+        if (type == "password") {
+          $("#confirmPassword").attr("type", "text");
+          $(this).addClass("fa-eye").removeClass("fa-eye-slash");
+        } else {
+          $("#confirmPassword").attr("type", "password");
+          $(this).addClass("fa-eye-slash").removeClass("fa-eye");
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <!-- header section strats -->
+
+  <header class="header_section" id="header-section">
+    <div class="header_bottom">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <span class="navbar-brand" href="index.html">
+            <span>No Broker</span>
+          </span>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <button type="button" id="logout">
+                  Logout
+                  <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                  </div>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#setting">
+                  Change Password
+                  <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- end header section -->
+
+  <div id="welcome-box" class="mt-5 container">
+    <div class="fs-1 ms-5 fw-bold">
+      Welcome ,&nbsp;
+      <span id="provider-welcome" class="fs-4 fw-semibold"></span>
+    </div>
+  </div>
+
+  <div class="row m-0 mt-5 justify-content-center">
+
+    <div id="profile-card" class="card me-4 mb-2 p-0 text-center"
+      style="width: 18rem; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px">
+      <div class="card-header border-0">
+        <img src="pics/Profile (2).png" class="card-img-top mx-auto" style="width: 13vw" alt="..." />
+      </div>
+
+      <div class="card-body p-0">
+        <h5 class="card-title my-2">Profile Form</h5>
+        <a href="/profile-provider" class="btn mb-4 mt-2" style="background-color: #0355cc; color: #f2f5f9">Profile</a>
+      </div>
+    </div>
+
+    <div id="avail-service-card" class="card me-4 mb-2 p-0 text-center"
+      style="width: 18rem; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px">
+      <div class="card-header border-0">
+        <img src="pics/avail-service.png" class="card-img-top mx-auto" style="width: 13vw" alt="..." />
+      </div>
+
+      <div class="card-body p-0">
+        <h5 class="card-title my-2">Avail Services</h5>
+        <button type="button" class="btn mb-4 mt-2" style="background-color: #0355cc; color: #f2f5f9"
+          data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Avail
+        </button>
+      </div>
+    </div>
+
+    <div id="service-manager-card" class="card me-4 mb-2 p-0 text-center"
+      style="width: 18rem; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px">
+      <div class="card-header border border-0">
+        <img src="pics/service-manager.png" class="card-img-top mx-auto" style="width: 13vw" alt="..." />
+      </div>
+
+      <div class="card-body p-0">
+        <h5 class="card-title my-2">Service Manager</h5>
+        <a href="/service-manager" class="btn mb-4 mt-2" style="background-color: #0355cc; color: #f2f5f9">Manager</a>
+      </div>
+    </div>
+
+    <div id="bookings-card" class="card me-4 mb-2 p-0 text-center"
+      style="width: 18rem; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px">
+      <div class="card-header border border-0">
+        <img src="pics/booking-record.png" class="card-img-top mx-auto" style="width: 13vw" alt="..." />
+      </div>
+
+      <div class="card-body p-0">
+        <h5 class="card-title my-2">Booking Records</h5>
+        <a href="/bookings" class="btn mb-4 mt-2" style="background-color: #0355cc; color: #f2f5f9">Get Records</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayDateYear"></span> All Rights Reserved By
+        Lakshay Bansal
+      </p>
+    </div>
+  </footer>
+
+  <!--Settings Modal -->
+  <div class="modal fade" id="setting" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Settings</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="txtEmail" class="form-label">Email Id</label>
+              <input type="email" class="form-control" id="txtEmail" placeholder="Enter email address" />
+            </div>
+
+            <div class="mb-3">
+              <label for="oldPassword" class="form-label">Old Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" placeholder="Enter old password" id="oldPassword" />
+                <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="opwd"></i></span>
+              </div>
+              <!-- <div id="chk-pwd" style="font-size: 0.8rem"></div> -->
+            </div>
+
+            <div class="mb-3">
+              <label for="newPassword" class="form-label">New Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" placeholder="Enter new password" id="newPassword" />
+                <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="npwd"></i></span>
+              </div>
+              <!-- <div id="chk-pwd" style="font-size: 0.8rem"></div> -->
+            </div>
+
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Conifrm Password</label>
+              <div class="input-group mb-2">
+                <input type="password" class="form-control" placeholder="Re-enter new password" id="confirmPassword" />
+                <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="cpwd"></i></span>
+              </div>
+
+              <span class="text-primary text-center" id="res" style="display: block">*</span>
+
+              <!-- <div id="chk-pwd" style="font-size: 0.8rem"></div> -->
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="updateBtn">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Avail Services Modal-->
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">
+            Avail Service
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <!-- <div class="col-12 text-center mb-1"><img style=" width:10vw ; height:20vh" src="pics/services.png" alt=""></div> -->
+
+            <div class="col-12">
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="txtemail" placeholder="name@example.com" />
+                <label for="txtemail">Email address</label>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="txtType" class="form-label">Type of Service</label>
+              <select id="txtType" class="form-select" name="txtType">
+                <option value="none" selected>Select</option>
+                <option value="Home Cleaning">Home Cleaning</option>
+                <option value="Wall Painting">Wall Painting</option>
+                <option value="Electricity Work">Electricity Work</option>
+                <option value="Plumber Work">Plumber Work</option>
+                <option value="AC Servicing">AC Servicing</option>
+              </select>
+            </div>
+
+            <!-- <div class="col-12 my-2">
+                    <label for="txtCity" class="form-label">City</label>
+                    <input type="text" class="form-control" name="txtCity" id="txtCity" placeholder="City">
+                </div> -->
+
+            <div class="mb-3 mt-1">
+              <label for="txtCharges" class="form-label">Charges For Visit</label>
+              <div class="input-group">
+                <span class="input-group-text">Rs</span>
+                <input type="text" class="form-control" placeholder="100" id="txtCharges" />
+                <span class="input-group-text">.00</span>
+              </div>
+            </div>
+
+            <div class="col-12 mt-1">
+              <label class="form-label">Available</label>
+            </div>
+
+            <div class="row mb-3">
+              <label for="timeFrom" class="col-1 col-form-label me-1">From</label>
+              <div class="col-4">
+                <input type="time" class="form-control" id="timeFrom" name="timeFrom" />
+              </div>
+
+              <label for="timeTo" class="col-1 col-form-label p-0 pt-1 text-center">To</label>
+              <div class="col-4">
+                <input type="time" class="form-control" id="timeTo" name="timeTo" />
+              </div>
+            </div>
+
+            <div class="form-floating mt-2">
+              <textarea class="form-control" placeholder="Leave a comment here" id="txtDesp"
+                style="height: 15vh"></textarea>
+              <label for="textDesp" class="ms-2">Description</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" id="btn-avail">
+            Avail Service
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

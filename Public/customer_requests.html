@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking Requests - Customer</title>
+
+  <link rel="stylesheet" href="CSS/header-footer.css">
+  <link rel="stylesheet" href="CSS/side-nav.css">
+  <link rel="icon" type="image/x-icon" href="pics/index-favi.png" sizes="">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+    integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>    
+    
+  <style>
+    .active {
+      opacity: 1;
+      transform: scale(1);
+      /* transition:ease all 0.5s; */
+    }
+
+    .unactive {
+      opacity: 0;
+      transform: scale(0);
+      /* transition:ease all 0.5s; */
+    }
+  
+  
+
+  </style>
+
+  <script>
+
+    //-------------------------AngularJS--------------------------------------------//
+
+    var module = angular.module("myModule", []);
+
+    module.controller("myController", function ($scope, $http) {
+
+      $scope.email = localStorage.getItem("activeUser");
+      $scope.jsonArray;
+
+      $scope.doFetchPendingRequests = function (email) {
+
+        let url = "/fetch-pending-requests?angEmail=" + email;
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+
+          // alert(JSON.stringify(response.data));z
+
+          $scope.jsonArray = response.data;
+
+        }
+
+        function fail(response) {
+
+          alert(JSON.stringify(response.data));
+
+          console.log((response.data));
+
+        }
+
+      }
+
+      $scope.doFetchAcceptedRequests = function (email) {
+
+        let url = "/fetch-accepted-requests?angEmail=" + email;
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+
+          // alert(JSON.stringify(response.data));
+
+          $scope.jsonArray = response.data;
+
+        }
+
+        function fail(response) {
+
+          alert(JSON.stringify(response.data));
+
+          // console.log((response.data));
+
+        }
+
+      }
+
+
+      $scope.doFetchRejectedRequests = (email) => {
+        let url = "/fetch-rejected-requests?angEmail=" + email;
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+
+          // alert(JSON.stringify(response.data));
+
+          $scope.jsonArray = response.data;
+
+        }
+
+        function fail(response) {
+
+          alert(JSON.stringify(response.data));
+
+          // console.log((response.data));
+
+        }
+      }
+
+
+    });
+
+
+  </script>
+
+
+</head>
+
+
+<body ng-app="myModule" ng-controller="myController" onload="docheckUsr()">
+
+       <!-- header section strats -->
+       <header class="header_section">
+        <div class="header_bottom">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+              <span class="navbar-brand" href="index.html">
+                <span>No Broker</span>
+              </span>
+
+              
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a href="dash-customer.html">
+                        <button type="button">
+                          Dashboard
+                          <div class="arrow-wrapper">
+                            <div class="arrow"></div>
+                          </div>
+                        </button>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <!-- end header section -->
+
+  <div class="row justify-content-center mt-5">
+
+    <label for="txtEmail" class="col-1 col-form-label m-0 p-0 text-end pe-2 " style="font-size: 1.3rem;">Email Id
+      :</label>
+    <div class="col-3 me-2 p-0">
+      <input type="email " class="form-control" id="txtEmail" ng-model="email">
+    </div>
+
+  </div>
+
+  <!-- Side Panel And Booking Tables -->
+  <div class="user-profile">
+    <div class="row no-gutters">
+      <section class="sidenav col-md-auto layout_padding">
+
+        <div class="sidenav-url margin-auto">
+
+          <div class="profile p-2">
+            <img src="pics/request-image.png" class="mx-auto d-block mb-2" alt="">
+          </div>
+
+          <div class="url margin-auto">
+            <a id="pendBtn" class="active" ng-click="doFetchPendingRequests(email)"
+              onclick="pendingrequestHandler(pending , accepted , rejected)">
+              Pending Requests
+            </a>
+            <hr style="background: var(--theme-color);">
+          </div>
+
+          <div class="url margin-auto">
+            <a id="accpBtn" ng-click="doFetchAcceptedRequests(email)"
+              onclick="acceptedrequestHandler(pending , accepted , rejected)">
+              Accepted Requests
+            </a>
+            <hr style="background: var(--theme-color);">
+          </div>
+
+          <div class="url margin-auto">
+            <a id="rejtBtn" ng-click="doFetchRejectedRequests (email)"
+              onclick="rejectedrequestHandler(pending , accepted , rejected)">
+              Rejected Requests
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile col-md">
+        <div class="container mt-5">
+
+          <div class="mt-4" style="display: none;" id="pending">
+
+            <!-- <h4 class="mb-2" >Pending Requests</h4> -->
+
+            <table class="table table-bordered table-hover text-center">
+
+              <tr>
+                <th style="background-color: #d0d9f5;">Sr No.</th>
+                <th style="background-color: #d0d9f5;">Provider Email</th>
+                <th style="background-color: #d0d9f5;">Provider Name</th>
+                <th style="background-color: #d0d9f5;">Type of Service</th>
+                <th style="background-color: #d0d9f5;">Provider Contact</th>
+                <th style="background-color: #d0d9f5;">Address</th>
+                <th style="background-color: #d0d9f5;">Visit Date</th>
+                <th style="background-color: #d0d9f5;">Visit From</th>
+                <th style="background-color: #d0d9f5;">Visit To</th>
+                <th style="background-color: #d0d9f5;">Description</th>
+              </tr>
+
+              <tr ng-repeat="obj in jsonArray">
+
+                <td>{{$index+1}}</td>
+                <td>{{obj.pemail}}</td>
+                <td>{{obj.pname}}</td>
+                <td>{{obj.service}}</td>
+                <td>{{obj.pcontact}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.vdate}}</td>
+                <td>{{obj.vfrom}}</td>
+                <td>{{obj.vto}}</td>
+                <td>{{obj.problem}}</td>
+
+              </tr>
+
+            </table>
+          </div>
+
+          <div class="mt-4" style="display:none;" id="accepted">
+
+            <!-- <h4 class="mb-2">Accepted Requests</h4> -->
+
+            <table class="table table-bordered table-hover text-center">
+              <tr>
+                <th style="background-color: #d0d9f5;">Sr No.</th>
+                <th style="background-color: #d0d9f5;">Provider Email</th>
+                <th style="background-color: #d0d9f5;">Provider Name</th>
+                <th style="background-color: #d0d9f5;">Type of Service</th>
+                <th style="background-color: #d0d9f5;">Provider Contact</th>
+                <th style="background-color: #d0d9f5;">Address</th>
+                <th style="background-color: #d0d9f5;">Visit Date</th>
+                <th style="background-color: #d0d9f5;">Visit From</th>
+                <th style="background-color: #d0d9f5;">Visit To</th>
+                <th style="background-color: #d0d9f5;">Description</th>
+              </tr>
+
+              <tr ng-repeat="obj in jsonArray">
+
+                <td>{{$index+1}}</td>
+                <td>{{obj.pemail}}</td>
+                <td>{{obj.pname}}</td>
+                <td>{{obj.service}}</td>
+                <td>{{obj.pcontact}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.vdate}}</td>
+                <td>{{obj.vfrom}}</td>
+                <td>{{obj.vto}}</td>
+                <td>{{obj.problem}}</td>
+
+              </tr>
+
+            </table>
+          </div>
+
+
+          <div class="mt-4" style="display: none;" id="rejected">
+
+            <!-- <h4 class="mb-2" >Rejected Requests</h4> -->
+
+            <table class="table table-bordered table-hover text-center">
+              <tr>
+                <th style="background-color: #d0d9f5;">Sr No.</th>
+                <th style="background-color: #d0d9f5;">Provider Email</th>
+                <th style="background-color: #d0d9f5;">Provider Name</th>
+                <th style="background-color: #d0d9f5;">Type of Service</th>
+                <th style="background-color: #d0d9f5;">Provider Contact</th>
+                <th style="background-color: #d0d9f5;">Address</th>
+                <th style="background-color: #d0d9f5;">Visit Date</th>
+                <th style="background-color: #d0d9f5;">Visit From</th>
+                <th style="background-color: #d0d9f5;">Visit To</th>
+                <th style="background-color: #d0d9f5;">Description</th>
+
+              </tr>
+
+              <tr ng-repeat="obj in jsonArray">
+
+                <td>{{$index+1}}</td>
+                <td>{{obj.pemail}}</td>
+                <td>{{obj.pname}}</td>
+                <td>{{obj.service}}</td>
+                <td>{{obj.pcontact}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.vdate}}</td>
+                <td>{{obj.vfrom}}</td>
+                <td>{{obj.vto}}</td>
+                <td>{{obj.problem}}</td>
+              </tr>
+
+            </table>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+
+    const docheckUsr = function () {
+      if (localStorage.getItem("activeUser") == undefined) {
+        location.href = "index.html";
+        return;
+      }
+      const emailBox = document.getElementById("txtEmail");
+      emailBox.value = localStorage.getItem("activeUser");
+      emailBox.readOnly = true;
+    }
+
+
+    const rejtBtn = document.querySelector("#rejtBtn");
+    const pendBtn = document.querySelector("#pendBtn");
+    const accpBtn = document.querySelector("#accpBtn");
+
+    function pendingrequestHandler(pending, accepted, rejected) {
+
+      accepted.style.display = " none";
+      pending.style.display = "block";
+      rejected.style.display = "none";
+      accpBtn.classList.remove("active");
+      pendBtn.classList.add("active");
+      rejtBtn.classList.remove("active");
+
+    }
+
+    function acceptedrequestHandler(pending, accepted, rejected) {
+
+      // const accepted = document.querySelector("#accepted");
+
+      accepted.style.display = "block";
+      pending.style.display = "none";
+      rejected.style.display = "none";
+      accpBtn.classList.add("active");
+      pendBtn.classList.remove("active");
+      rejtBtn.classList.remove("active");
+
+    }
+
+    function rejectedrequestHandler(pending, accepted, rejected) {
+
+      // const rejected = document.querySelector("#rejected");
+
+      rejected.style.display = "block";
+      pending.style.display = "none";
+      accepted.style.display = "none";
+      rejtBtn.classList.add("active");
+      pendBtn.classList.remove("active");
+      accpBtn.classList.remove("active");
+    }
+  </script>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

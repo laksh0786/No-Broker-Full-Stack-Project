@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Booking Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/header-footer.css">
+    <link rel="icon" type="image/x-icon" href="pics/index-favi.png" sizes="">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+
+
+        let module = angular.module("myModule" , []);
+        
+        module.controller("myController" , function($scope , $http){
+
+            $scope.cityRec ; $scope.typeRec;
+            $scope.selCityrec; $scope.selTyperec;
+            $scope.tableRec; 
+
+//==============================================================================================//
+
+            $scope.fetchCity = function(){
+
+                let url = "/fetch-cities";
+
+                $http.get(url).then(done , fail);
+
+                function done(response){
+                    // alert(JSON.stringify(response.data));
+                    $scope.cityRec = response.data;
+                }
+
+                function fail(response){
+                    // alert(response.data);
+                }
+                
+            }
+
+            $scope.showSelcity = function(){
+                // alert($scope.selCityrec.city);
+                // alert(JSON.stringify($scope.selCityrec));
+            }
+            
+//===============================================================================================================
+            
+            $scope.fetchType = function(){
+
+                let url = "/fetch-services";
+
+                $http.get(url).then(done , fail);
+
+                function done(response){
+                    // alert(JSON.stringify(response.data));
+                    $scope.typeRec = response.data;
+                }
+
+                function fail(err){
+                    alert(err.data);
+                }
+
+            }
+
+            $scope.showSeltype = function(){
+            alert($scope.selTyperec.type);
+        }
+//===========================================================================================================
+
+            $scope.doFetchservices = ()=>{
+
+              let url = "/fetch-avail-services?angCity="+$scope.selCityrec.city+"&angType="+$scope.selTyperec.type;
+
+              $http.get(url).then(done , fail);
+
+              function done (response){
+                // alert(JSON.stringify(response.data));
+                $scope.tableRec = response.data;
+              }
+
+              function fail(response){
+                alert(response.data);
+              }
+
+          }
+    
+ //============================================================================================================
+              
+              $scope.selRec; //selected Service
+               
+              $scope.doShowdetails = (index) =>{
+                $scope.selRec = $scope.tableRec[index];
+                // alert(JSON.stringify($scope.selRec));
+              }
+              
+//=======================================================================================================//
+
+$scope.bookingRec = {
+    cEmail:localStorage.getItem("activeUser"),
+    cName:"",
+    cContact:"",
+    cAddress:"",
+    cVisitDate:"",
+    vfrom:"",
+    vto:"",
+    desp:""
+};
+
+
+$scope.doBook = function(){
+
+    // alert($scope.selRec.email);
+    
+    let url = "/booking-details?angselRec="+JSON.stringify($scope.selRec)+"&angBookingRec="+JSON.stringify($scope.bookingRec);
+
+    // let url = "/booking-details?angpEmail="+$scope.selRec.email+"&angService="+$scope.selRec.type+"&angcEmail="+$scope.bookingRec.cEmail+"&angcName="+$scope.bookingRec.cName+"&angcContact="+$scope.bookingRec.cContact+"&angcAddress="+$scope.bookingRec.cAddress+"&angcVDate="+$scope.bookingRec.cVisitDate+"&angVfrom="+$scope.bookingRec.vfrom+"&angvto="+$scope.bookingRec.vto+"&angDesp="+$scope.bookingRec.desp;
+
+    $http.get(url).then(done,fail);
+
+    function done(response){
+        alert(response.data);
+    }
+
+    function fail(response){
+      alert(response.data);
+    }
+}
+
+})
+
+
+
+    </script>
+
+  </head>
+  <body style="background-color:white;" ng-app="myModule" ng-controller="myController" onload="docheckUsr()" ng-init="fetchCity(); fetchType()">
+       <!-- header section strats -->
+       <header class="header_section">
+        <div class="header_bottom">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+              <span class="navbar-brand" href="index.html">
+                <span>No Broker</span>
+              </span>
+
+              
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a href="dash-customer.html">
+                        <button type="button">
+                          Dashboard
+                          <div class="arrow-wrapper">
+                            <div class="arrow"></div>
+                          </div>
+                        </button>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <!-- end header section -->
+
+
+      <div class="row mt-5 justify-content-center">
+
+        <div class=" row col-5">
+
+            <label for="selCity" class="col-3 col-form-label text-end pe-4" style="font-size: larger;">Select City : </label>
+            
+            <div class="col-4 p-0">
+              <select class="form-select  ps-2" id="selCity" ng-options="obj.city for obj in cityRec" ng-model="selCityrec" ng-change="showSelcity()">
+                <option value="">Select</option>
+              </select>
+            </div>
+
+        </div>
+
+
+        <div class=" row col-5 justify-content-center">
+
+            <label for="selService" class="col-5 col-form-label text-end pe-4" style="font-size: larger;">Select Services:</label>
+            
+            <div class="col-4 p-0">
+              <select class="form-select  ps-2" id="selService" ng-options="obj.type for obj in typeRec" ng-model="selTyperec" ng-change="showSeltype()">
+                <option value="">Select</option>
+              </select>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+          <button type="button" class="btn btn-outline-primary" ng-click="doFetchservices()">Fetch Serivces</button>
+        </div>
+
+      </div>
+
+
+      <div class="row mt-5 justify-content-center">
+
+
+        <div class="card me-4 mb-3 col-3"  ng-repeat="obj in tableRec ">
+
+          <div class="card-header text-center">
+              <img src="pics/worker.png" class="card-img-top" alt="..." style="width:12vw">
+          </div>
+          
+          <div class="card-body">
+            <h5 class="card-title">{{obj.name}}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Email : {{obj.email}}</li>
+            <li class="list-group-item">Availabilty : From {{obj.afrom}} To {{obj.ato}}</li>
+            <li class="list-group-item">Charges for visit : Rs. {{obj.charges}}</li>
+            <li class="list-group-item">About Partner : {{obj.description}}</li>
+            <!-- <li class="list-group-item">Status : {{obj.status}}</li> -->
+          </ul>
+          
+          <div class="card-body text-center">
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#bookDetails" ng-click="doShowdetails($index)" >Details</button>
+            <!-- <button type="button" class="btn btn-outline-danger">Block</button> -->
+          </div>
+        </div>
+
+    </div>
+
+
+          <!-- Booking Modal -->
+<div class="modal fade" id="bookDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Book Service</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+  
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="form-floating ">
+                        <input type="email" class="form-control" id="txtemail"  placeholder="name@example.com" ng-model="bookingRec.cEmail">
+                        <label for="txtemail">Email address</label>
+                      </div>
+                </div>
+
+
+                <div class="col-12 text-start mt-3">
+                    <label for="txtName" class="form-label">Enter Name</label>
+                    <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Enter Name" ng-model="bookingRec.cName">
+                </div>
+
+                <div class="col-12 text-start mt-3">
+                    <label for="txtNumber" class="form-label">Contact No.</label>
+                    <input type="text" class="form-control" maxlength="10" id="txtNumber" name="txtNumber" placeholder="Contact Number" ng-model="bookingRec.cContact">
+                </div>
+
+
+                <div class="col-12 text-start mt-3">
+                    <label for="txtAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" name="txtAddress" id="txtAddress" placeholder="Address for visit" ng-model="bookingRec.cAddress">
+                </div>
+
+
+                <div class="mb-3 mt-2">
+
+                    <label for="txtDate" class="form-label">Date for visit : </label>
+                    <input type="date" class="form-control" placeholder="" id="txtDate" ng-model="bookingRec.cVisitDate">
+                      
+                </div>
+
+                <div class="col-12 mt-1">
+                    <label class="form-label">Visit Time Between</label>
+                </div>
+    
+                <div class="row mb-3">
+                    <label for="timeFrom" class="col-1 col-form-label me-1">From</label>
+                    <div class="col-4">
+                      <input type="time" class="form-control " id="timeFrom"  name="timeFrom" ng-model="bookingRec.vfrom">
+                    </div>
+    
+                    <label for="timeTo" class="col-1 col-form-label p-0 pt-1 text-center">To</label>
+                    <div class="col-4">
+                      <input type="time" class="form-control " id="timeTo" name="timeTo" ng-model="bookingRec.vto">
+                    </div>
+                </div> 
+                
+                
+                <div class="form-floating mt-2">
+                    <textarea class="form-control" placeholder="Mention problem" id="txtDesp" style="height: 15vh" ng-model="bookingRec.desp"></textarea>
+                    <label for="textDesp" class="ms-2">About Service required</label>
+                </div>
+
+            </div>
+  
+          
+        </div>
+  
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" ng-click="doBook()">Book Now</button>
+          <a href="//wa.me/+91{{selRec.contact}}" class="btn btn-primary">Chat With Partner</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <script>
+    
+         const docheckUsr = ()=>{
+            if(localStorage.getItem("activeUser")==undefined){
+                  location.href="index.html";
+                  return;
+            }
+            
+            document.getElementById("txtemail").value = localStorage.getItem("activeUser");
+            document.getElementById("txtemail").setAttribute("readonly" , true);
+
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

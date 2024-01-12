@@ -1,0 +1,128 @@
+#profile-card {
+  opacity: 0;
+  animation: fadeInUp 1.5s both;
+}
+
+#profile-card:hover {
+  transform: scale(1.1) !important;
+}
+
+
+#avail-service-card {
+  opacity: 0;
+  animation: 1.5s 0.3s fadeInUp both;
+}
+
+#avail-service-card:hover {
+  transform: scale(1.1) !important;
+}
+
+#service-manager-card {
+  opacity: 0;
+  animation: 1.5s 0.6s fadeInUp both;
+}
+
+#service-manager-card:hover {
+  transform: scale(1.1) !important;
+}
+
+#bookings-card {
+  opacity: 0;
+  animation: 1.5s 0.9s fadeInUp both;
+}
+
+#bookings-card:hover {
+  transform: scale(1.1) !important;
+}
+
+#welcome-box {
+  /* animation: 1.5s  pulse; */
+  animation: 1.5s  backInDown;
+}
+
+#header-section{
+  animation: 2s 0.2s backInDown;
+}
+
+#feature-section{
+  animation: 2s backInDown;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes backInDown {
+  0% {
+      /* transform: translateY(-1200px) scale(.7); */
+      transform: translateY(-1200px);
+      opacity: .7;
+  }
+
+  80% {
+      /* transform: translateY(0) scale(.7); */
+      transform: translateY(0);
+      /* opacity: .7; */
+  }
+
+  to {
+      /* transform: scale(1); */
+      opacity: 1
+  }
+}

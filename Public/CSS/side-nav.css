@@ -1,0 +1,135 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+:root{
+  --theme-color: #0355cc;
+  --theme-bgcolor: #d1e3ff70;
+}
+
+.layout_padding {
+  padding: 30px 0;
+}
+.user-profile .sidenav {
+  margin: 50px 0;
+  background: var(--theme-bgcolor);
+  width: 200px;
+  height:500px;
+  border-radius: 0 40px 40px 0;
+  animation: 1s fadeInLeft;
+  position: sticky;
+  top:0;
+
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+.user-profile .margin-auto {
+  width: 80%;
+  margin: auto;
+}
+
+.user-profile .sidenav .profile {
+  margin: .25rem;
+}
+
+.user-profile .sidenav .profile img {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+}
+
+.user-profile .sidenav .url a:hover,
+.user-profile .sidenav .url .active {
+  background: var(--theme-color);
+  color: white;
+}
+
+
+
+.user-profile .sidenav .url a {
+  border-radius: 10px;
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 8px 15px;
+  transition: all 0.4s;
+  background: transparent;
+  border: 1px solid var(--theme-color);
+  color: var(--theme-color);
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+
+  .user-profile .sidenav {
+    position: sticky;
+    top: 50px;
+    z-index: 999;
+    margin: 0 10px;
+    width: 100% !important;
+    border-radius: 0 0 30px 30px;
+    padding: 10px;
+    animation: slideDown 0.5s 0.5s;
+  }
+
+  .user-profile .margin-auto {
+    width: auto;
+    margin: 0;
+  }
+
+
+  .user-profile .sidenav .profile img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .user-profile .sidenav .profile .user-name,
+  .user-profile .sidenav .url hr {
+    display: none;
+  }
+
+  .user-profile .sidenav,
+  .user-profile .sidenav .sidenav-url {
+    width: auto;
+    display: flex;
+    gap: 13px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .user-profile .sidenav .url a {
+    font-size: 13px;
+    border: none;
+    display: inline;
+    padding: 0;
+    transition: all 0.4s;
+    color: white;
+  }
+
+  .user-profile .sidenav .url a:hover,
+  .user-profile .sidenav .url .active {
+    background: none;
+    color: var(--theme-color);
+  }
+
+
+}

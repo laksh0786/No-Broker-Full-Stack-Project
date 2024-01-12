@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="icon" type="image/x-icon" href="pics/index-favi.png" sizes="">
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="CSS/header-footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="CSS/animation.css">
+  <link rel="stylesheet" href="CSS/side-nav.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+    integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <style>
+    .active {
+      opacity: 1;
+      transform: scale(1);
+      /* transition:ease all 0.5s; */
+    }
+
+    .unactive {
+      opacity: 0;
+      transform: scale(0);
+      /* transition:ease all 0.5s; */
+    }
+  </style>
+
+
+  <script>
+    $(document).ready(function () {
+
+      $("#logout").click(function () {
+        localStorage.removeItem("activeUser");
+        location.href = "index.html";
+      })
+
+      //=========================================================================================================//
+      $("#btnDel").click(function () {
+
+        var obj = {
+          type: "get",
+          url: "/delete-exp-med"
+        }
+
+        $.ajax(obj).done(function (resp) {
+          alert(resp);
+        }).fail(function (err) {
+          alert(JSON.stringify(err));
+        })
+
+      })
+
+    })
+
+
+    var module = angular.module("myModule", []);
+
+    module.controller("myController", function ($scope, $http) {
+
+      $scope.tableData;
+      //====================================Fetch Record Function=============================//
+
+      $scope.doFetch = function () {
+        // alert();
+        let url = "/fetch-table-record";
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+          // alert(JSON.stringify(response.data));
+          // console.log(JSON.stringify(response.data));
+          $scope.tableData = response.data;
+        }
+
+        function fail(response) {
+          alert((response.data));
+        }
+
+      }
+      //=========================================Resume User Function==============================//
+
+      $scope.doResume = (email) => {
+
+        let url = "/resume-user?angEmail=" + email;
+
+        if (confirm("Do you want to resume user?") == false) {
+          return;
+        }
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+          alert(response.data);
+          $scope.doFetch();
+        }
+
+        function fail(response) {
+          alert(response.data);
+        }
+
+      }
+
+      //======================================Block User Function========================================//
+
+      $scope.doBlock = function (email) {
+
+        let url = "/block-user?angEmail=" + email;
+
+        if (confirm("Do you want to block user?") == false) {
+          return;
+        }
+
+        $http.get(url).then(done, fail);
+
+
+
+        function done(response) {
+          alert(response.data);
+          $scope.doFetch();
+        }
+
+        function fail(response) {
+          alert(response.data);
+        }
+
+      }
+
+      //Fetching partner data
+      $scope.providerTable;
+
+      $scope.doFetchProvider = function () {
+
+        let url = "/fetch-provider-table-record";
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+          // alert(JSON.stringify(response.data));
+          $scope.providerTable = response.data;
+        }
+
+        function fail(response) {
+          alert(response.data);
+        }
+
+      }
+
+      //Fetching customer data
+      $scope.customerTable;
+
+      $scope.doFetchCustomer = () => {
+        // alert();
+        let url = "/fetch-customer-table-record";
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+
+          // alert(JSON.stringify(response.data));
+          $scope.customerTable = response.data;
+
+        }
+
+        function fail(error) {
+          alert(error.data);
+        }
+
+      }
+
+
+
+    })
+
+  </script>
+
+
+</head>
+
+<body ng-app="myModule" ng-controller="myController" style="height: 100vh;">
+
+
+  <!-- header section strats -->
+  <header class="header_section" id="header-section">
+    <div class="header_bottom">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <span class="navbar-brand" href="index.html">
+            <span>No Broker</span>
+          </span>
+
+          <button style="background-color: transparent;" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <button type="button" id="logout">
+                  Logout
+                  <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                  </div>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- end header section -->
+
+
+  <div id="welcome-box" class="my-3 container">
+
+    <div class="fs-1 ms-5 fw-bold">Welcome ,&nbsp; <span id="customer-welcome" class="fs-3 fw-semibold">Admin
+        Dashboard</span></div>
+
+  </div>
+
+
+  <!-- Side Panel And Booking Tables -->
+  <div class="user-profile">
+    <div class="row no-gutters">
+      <section class="sidenav col-md-2 layout_padding" style="background-color:rgba(175, 198, 221, 0.466);;">
+
+        <div class="sidenav-url margin-auto">
+
+          <div class="profile p-2">
+            <img src="pics/request-image.png" class="mx-auto d-block mb-2" alt="">
+          </div>
+
+          <div class="url margin-auto">
+            <a id="pendBtn" class="active" ng-click="doFetch()"
+              onclick="usersrequestHandler(users , partner , customer)">
+              Users
+            </a>
+            <hr style="background: var(--theme-color);">
+          </div>
+
+          <div class="url margin-auto">
+            <a id="accpBtn" ng-click="doFetchProvider()" onclick="partnerrequestHandler(users , partner , customer)">
+              Service Providers
+            </a>
+            <hr style="background: var(--theme-color);">
+          </div>
+
+          <div class="url margin-auto">
+            <a id="rejtBtn" ng-click="doFetchCustomer()" onclick="customerrequestHandler(users , partner , customer)">
+              Customers
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile col-10">
+        <div class="container mt-5">
+
+          <div class="mt-4" id="users">
+
+            <!-- <h4 class="mb-2">users Requests</h4> -->
+            <table class="table  table-hover table-bordered text-center">
+              <tr class="">
+                <th style="background-color: #d0d9f5;">S No.</th>
+                <th style="background-color: #d0d9f5;">Email</th>
+                <th style="background-color: #d0d9f5;">type</th>
+                <th style="background-color: #d0d9f5;">dos</th>
+                <th style="background-color: #d0d9f5;">status</th>
+                <th style="background-color: #d0d9f5;">Operations</th>
+              </tr>
+
+              <tr class="" ng-repeat="obj in tableData">
+                <td>{{$index+1}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.type}}</td>
+                <td>{{obj.dos}}</td>
+                <td>{{obj.status}}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary" ng-click="doResume(obj.email)">Resume</button>
+                  <button type="button" class="btn btn-outline-danger" ng-click="doBlock(obj.email)">Block</button>
+                </td>
+
+              </tr>
+
+            </table>
+          </div>
+
+          <div class="mt-4" style="display:none;" id="partner">
+
+            <table class="table table-hover table-bordered text-center">
+              <tr>
+                <th style="background-color: #d0d9f5;">SNo.</th>
+                <th style="background-color: #d0d9f5;">Email</th>
+                <th style="background-color: #d0d9f5;">Name</th>
+                <th style="background-color: #d0d9f5;">Contact No</th>
+                <th style="background-color: #d0d9f5;">Address</th>
+                <th style="background-color: #d0d9f5;">City</th>
+                <th style="background-color: #d0d9f5;">Proof Photo</th>
+              </tr>
+
+              <tr ng-repeat="obj in providerTable">
+                <td>{{$index+1}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.contact}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.city}}</td>
+                <!-- <td>From:&nbsp;{{obj.afrom}} To:&nbsp;{{obj.ato}}</td> -->
+                <!-- <td>{{obj.proof}}</td> -->
+                <td><img src="Id_Proof/{{obj.proof}}" alt="Proof Not Provided" style="width:10vw; height:15vh"></td>
+              </tr>
+
+            </table>
+
+          </div>
+
+
+          <div class="mt-4" style="display:none;" id="customer">
+
+            <!-- <h4 class="mb-2">customer Requests</h4> -->
+
+            <table class="table table-bordered table-hover text-center">
+              <tr>
+                <td style="background-color: #d0d9f5;">SNo.</td>
+                <td style="background-color: #d0d9f5;">Email</td>
+                <td style="background-color: #d0d9f5;">Name</td>
+                <td style="background-color: #d0d9f5;">Contact No</td>
+                <td style="background-color: #d0d9f5;">Address</td>
+                <td style="background-color: #d0d9f5;">City</td>
+                <td style="background-color: #d0d9f5;">Aadhar Card</td>
+              </tr>
+
+              <tr ng-repeat="obj in customerTable">
+                <td>{{$index+1}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.contact}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.city}}</td>
+                <td><img src="Id_Proof/{{obj.proof}}" alt="Proof Not Provided" style="width:10vw; height:15vh"></td>
+              </tr>
+
+
+            </table>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayDateYear"></span> All Rights Reserved By
+        Lakshay Bansal
+      </p>
+    </div>
+  </footer>
+
+
+  <script>
+
+    const docheckUsr = function () {
+      if (localStorage.getItem("activeUser") == undefined) {
+        location.href = "index.html";
+        return;
+      }
+      const emailBox = document.getElementById("txtEmail");
+      emailBox.value = localStorage.getItem("activeUser");
+      emailBox.readOnly = true;
+    }
+
+
+    const rejtBtn = document.querySelector("#rejtBtn");
+    const pendBtn = document.querySelector("#pendBtn");
+    const accpBtn = document.querySelector("#accpBtn");
+
+    function usersrequestHandler(users, partner, customer) {
+
+      partner.style.display = " none";
+      users.style.display = "block";
+      customer.style.display = "none";
+      accpBtn.classList.remove("active");
+      pendBtn.classList.add("active");
+      rejtBtn.classList.remove("active");
+
+    }
+
+    function partnerrequestHandler(users, partner, customer) {
+
+      // const partner = document.querySelector("#partner");
+
+      partner.style.display = "block";
+      users.style.display = "none";
+      customer.style.display = "none";
+      accpBtn.classList.add("active");
+      pendBtn.classList.remove("active");
+      rejtBtn.classList.remove("active");
+
+    }
+
+    function customerrequestHandler(users, partner, customer) {
+
+      // const customer = document.querySelector("#customer");
+
+      customer.style.display = "block";
+      users.style.display = "none";
+      partner.style.display = "none";
+      rejtBtn.classList.add("active");
+      pendBtn.classList.remove("active");
+      accpBtn.classList.remove("active");
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

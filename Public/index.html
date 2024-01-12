@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NoBroker - Home </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="CSS/index-style.css" />
+  <link rel="stylesheet" href="CSS/responsive.css" />
+  <link rel="stylesheet" href="CSS/animation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="pics/index-favi.png" sizes="">
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+  <style>
+    .display_none{
+      display: none;
+    }
+    .display_block{
+      display: block;
+    }
+
+    #forgetPwd{
+      font-size:15px; 
+      color:#0275d8;
+      transition: ease-in-out 0.3s;
+    }
+
+    #forgetPwd:hover{
+      color:darkblue;
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="header-section" class="hero_area">
+
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <span>No Broker</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#about"> About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#service">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#contact">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#admin_modal">Admin</a>
+                </li>
+              </ul>
+
+              <div class="d-flex" role="search">
+
+                <button type="button" class="sign-btn" data-bs-toggle="modal" data-bs-target="#signup_modal">
+                  Sign up
+                  <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                  </div>
+                </button>
+
+                <button type="button" class="sign-btn" data-bs-toggle="modal" data-bs-target="#login_modal">
+                  Login
+                  <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                  </div>
+                </button>
+
+              </div>
+
+            </div>
+
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <!-- slider section -->
+    <section class="slider_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="detail-box">
+              <h1>
+                Repair and <br />
+                Maintenance <br />
+                Home Services
+              </h1>
+              <p>
+                Discover top-notch repair and maintenance services on our user-friendly platform. Our certified experts
+                guarantee efficient solutions, prioritizing customer satisfaction. Transparent pricing, timely service,
+                and a commitment to safety make us your trusted choice for seamless, quality repairs.
+              </p>
+              <a href="#contact"> Contact Us </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="img-box">
+              <img src="pics/slider-img.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+
+  </div>
+
+  <!-- feature section -->
+  <section id="feature-section" class="feature_section">
+    <div class="container">
+      <div class="feature_container">
+        <div class="box">
+          <div class="img-box">
+            <svg enable-background="new 0 0 511.995 511.995" height="512" viewBox="0 0 511.995 511.995" width="512"
+              xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <g>
+                  <path
+                    d="m217.106 280.749-48.214 48.214c-3.905 3.905-3.905 10.237 0 14.143 1.953 1.953 4.512 2.929 7.071 2.929s5.119-.976 7.071-2.929l48.214-48.214c3.905-3.905 3.905-10.237 0-14.143s-10.237-3.905-14.142 0z" />
+                  <path
+                    d="m328.915 168.939-48.17 48.17c-3.905 3.905-3.905 10.237 0 14.143 1.953 1.953 4.512 2.929 7.071 2.929s5.118-.976 7.071-2.929l48.17-48.17c3.905-3.905 3.905-10.237 0-14.143-3.905-3.905-10.235-3.905-14.142 0z" />
+                  <path
+                    d="m467.092 344.045c-19.14-11.051-41.175-14.64-62.649-10.314l-77.734-77.734 77.792-77.792c5.807 1.153 11.636 1.714 17.42 1.713 31.563-.001 61.664-16.706 78.009-45.016 14.983-25.951 16.076-57.546 2.923-84.516-4.363-8.946-10.004-13.602-16.765-13.838-6.652-.225-12.388 3.784-17.092 11.933l-15.5 26.847c-2.641 4.573-3.996 4.574-6.241 4.574h-11.499c-7.173 0-8.405-.712-11.992-6.924l-5.749-9.957c-1.161-2.011-1.801-3.12.84-7.692l15.5-26.847c4.705-8.15 5.307-15.138 1.788-20.769-3.585-5.737-10.432-8.295-20.366-7.6-29.932 2.094-56.747 18.837-71.73 44.789-11.052 19.141-14.641 41.178-10.313 62.65l-77.734 77.734-77.792-77.792c7.444-37.494-9.805-76.089-43.302-95.429-25.954-14.982-57.549-16.075-84.519-2.921-8.945 4.363-13.601 10.003-13.837 16.764-.232 6.636 3.783 12.387 11.933 17.092l26.846 15.5c4.574 2.641 4.574 3.92 4.574 6.241v11.499c0 7.173-.712 8.406-6.924 11.992l-9.958 5.749c-2.011 1.161-3.119 1.801-7.692-.839l-26.847-15.5c-8.15-4.706-15.138-5.307-20.769-1.789-5.737 3.585-8.294 10.437-7.6 20.366 2.094 29.933 18.837 56.749 44.789 71.732 19.141 11.051 41.176 14.64 62.65 10.313l77.734 77.734-77.792 77.791c-37.491-7.443-76.088 9.805-95.429 43.303-14.983 25.951-16.076 57.545-2.922 84.515 4.363 8.946 10.003 13.602 16.764 13.838 6.644.24 12.387-3.783 17.093-11.933l15.5-26.846c2.641-4.574 3.92-4.574 6.242-4.574h11.498c7.172 0 8.405.712 11.992 6.924l5.748 9.957c1.161 2.012 1.801 3.12-.839 7.692l-15.5 26.847c-4.706 8.15-5.307 15.138-1.788 20.769 3.202 5.124 9.008 7.711 17.285 7.711.991 0 2.019-.037 3.08-.111 29.933-2.094 56.749-18.837 71.731-44.788 11.051-19.141 14.641-41.178 10.314-62.65l77.733-77.733 77.792 77.792c-7.443 37.494 9.806 76.089 43.303 95.429 13.902 8.026 29.419 12.066 44.981 12.066 13.488-.001 27.012-3.037 39.534-9.144 8.945-4.363 13.601-10.003 13.837-16.764.232-6.636-3.782-12.387-11.933-17.093l-26.847-15.499c-4.573-2.641-4.573-3.92-4.573-6.242v-11.498c0-7.173.712-8.406 6.924-11.992l9.957-5.749c2.011-1.162 3.118-1.801 7.692.839l26.847 15.5c8.149 4.706 15.137 5.307 20.77 1.788 5.736-3.585 8.294-10.437 7.599-20.365-2.092-29.935-18.836-56.75-44.787-71.733zm-349.33-183.857c-2.529-2.528-6.217-3.514-9.67-2.585-18.082 4.867-36.972 2.39-53.188-6.972-19.866-11.47-32.794-31.86-34.751-54.705l25.178 14.537c6.256 3.612 15.932 7.629 27.692.839l9.958-5.749c12.336-7.123 16.923-15.067 16.923-29.312v-11.5c-.001-13.578-8.318-19.95-14.574-23.562l-25.178-14.535c20.763-9.729 44.887-8.727 64.752 2.743 27.385 15.812 40.811 48.162 32.647 78.671-.923 3.45.063 7.131 2.589 9.656l81.715 81.715-14.141 14.141-44.633-44.633c-3.905-3.905-10.237-3.905-14.143 0s-3.905 10.237 0 14.143l44.633 44.633-14.143 14.143zm42.426 234.045c-2.529 2.529-3.515 6.216-2.585 9.67 4.866 18.083 2.39 36.972-6.973 53.189-11.469 19.865-31.858 32.794-54.704 34.751l14.537-25.178c3.611-6.256 7.627-15.933.839-27.692l-5.749-9.958c-7.123-12.336-15.066-16.923-29.311-16.923h-11.5c-13.577 0-19.95 8.317-23.563 14.573l-14.536 25.178c-9.728-20.763-8.726-44.886 2.743-64.751 15.812-27.386 48.161-40.813 78.671-32.647 3.45.921 7.131-.063 9.656-2.589l234.094-234.094c2.529-2.529 3.515-6.216 2.585-9.67-4.866-18.083-2.391-36.972 6.973-53.188 11.47-19.866 31.86-32.794 54.705-34.751l-14.537 25.177c-3.612 6.256-7.629 15.932-.84 27.692l5.749 9.958c7.123 12.337 15.067 16.923 29.312 16.923h11.5c13.578-.001 19.95-8.318 23.562-14.573l14.537-25.178c9.728 20.763 8.726 44.885-2.744 64.751-15.811 27.386-48.164 40.809-78.671 32.647-3.451-.923-7.131.064-9.656 2.589zm306.476 7.3c-6.257-3.612-15.936-7.626-27.691-.839l-9.958 5.749c-12.336 7.122-16.923 15.066-16.923 29.31v11.5c0 13.578 8.317 19.95 14.573 23.563l25.178 14.536c-20.762 9.729-44.885 8.727-64.751-2.743-27.386-15.812-40.811-48.163-32.647-78.671.923-3.45-.063-7.131-2.589-9.656l-81.716-81.716 14.143-14.143 44.68 44.681c1.953 1.953 4.512 2.929 7.071 2.929s5.118-.977 7.071-2.929c3.905-3.905 3.905-10.237 0-14.142l-44.68-44.681 14.141-14.141 81.667 81.667c2.528 2.528 6.215 3.514 9.67 2.585 18.079-4.867 36.972-2.39 53.188 6.973 19.866 11.47 32.795 31.859 34.751 54.704z" />
+                  <path
+                    d="m255.998 245.998h-.007c-5.523 0-9.996 4.477-9.996 10s4.48 10 10.003 10 10-4.477 10-10-4.477-10-10-10z" />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h5 class="name">Repair</h5>
+        </div>
+        <div class="box active">
+          <div class="img-box">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
+              <g id="paint-painted-paint_roller-home-house" data-name="paint-painted-paint roller-home-house">
+                <path
+                  d="M60.01,25.05a2.963,2.963,0,0,0,1.85-1.54l.21-.41a3.022,3.022,0,0,0-1.14-3.91L58,17.43V7.82A3,3,0,0,0,57,2H49a3.009,3.009,0,0,0-3,3,2.979,2.979,0,0,0,1.99,2.81v3.62L33.54,2.76a2.988,2.988,0,0,0-3.08,0L3.07,19.19A3.022,3.022,0,0,0,1.93,23.1l.21.41a2.963,2.963,0,0,0,1.85,1.54,2.923,2.923,0,0,0,.83.12A3.033,3.033,0,0,0,6,24.9V56H5a3,3,0,0,0,0,6H59a3,3,0,0,0,0-6H58V24.91A2.9,2.9,0,0,0,60.01,25.05ZM49,4h8a1,1,0,0,1,0,2H49a1,1,0,0,1,0-2Zm7,4v8.23l-6.01-3.6V8ZM40,60H5a1,1,0,0,1,0-2H40Zm6,0H42V50h4Zm1-12H45V42.03a1.028,1.028,0,0,1,.42-.82l5.32-3.8A2.991,2.991,0,0,0,52,34.97V32a3.009,3.009,0,0,0-3-3H48V28a1,1,0,0,0-1-1H44a3.009,3.009,0,0,0-3-3H19a3.009,3.009,0,0,0-3,3H13a1,1,0,0,0-1,1v4a1,1,0,0,0,1,1h3a3.009,3.009,0,0,0,3,3h1v8a4,4,0,0,0,8,0V36h2a4,4,0,0,0,8,0h3a3.009,3.009,0,0,0,3-3h3a1,1,0,0,0,1-1V31h1a1,1,0,0,1,1,1v2.97a1.028,1.028,0,0,1-.42.82l-5.32,3.8A2.991,2.991,0,0,0,43,42.03V48H41a1,1,0,0,0-1,1v7H8V23.76L31.48,9.62a1.02,1.02,0,0,1,1.04,0L56,23.76V56H48V49A1,1,0,0,0,47,48ZM46,29v2H44V29Zm-4-2v6a1,1,0,0,1-1,1H38V26h3A1,1,0,0,1,42,27ZM29,30a3.009,3.009,0,0,0-3,3V44a2,2,0,0,1-4,0V26H36V36a2,2,0,0,1-4,0V33A3.009,3.009,0,0,0,29,30Zm1,3v1H28V33a1,1,0,0,1,2,0ZM20,26v8H19a1,1,0,0,1-1-1V27a1,1,0,0,1,1-1Zm-4,3v2H14V29ZM59,58a1,1,0,0,1,0,2H48V58ZM33.55,7.91a2.979,2.979,0,0,0-3.1,0L5.34,23.03a1.018,1.018,0,0,1-.8.1.972.972,0,0,1-.61-.51l-.21-.41A1.021,1.021,0,0,1,4.1,20.9L31.49,4.47a1,1,0,0,1,1.02,0L59.9,20.9a1.021,1.021,0,0,1,.38,1.31l-.21.41a.972.972,0,0,1-.61.51,1.018,1.018,0,0,1-.8-.1Z" />
+              </g>
+            </svg>
+          </div>
+          <h5 class="name">Improve</h5>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
+              <path
+                d="M62.707,31.293l-30-30a1,1,0,0,0-1.414,0l-30,30A1,1,0,0,0,2,33H7V57H6a1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H58a1,1,0,0,0,1-1V58a1,1,0,0,0-1-1H57V33h5a1,1,0,0,0,.707-1.707ZM57,61H7V59H57ZM9,57V32.414l23-23,23,23V57ZM56.414,31,32.707,7.293a1,1,0,0,0-1.414,0L7.586,31H4.414L32,3.414,59.586,31Z" />
+              <path
+                d="M41,39H36V36a1,1,0,0,0-1-1H29a1,1,0,0,0-1,1v3H23a3,3,0,0,0-3,3v4a1,1,0,0,0,1,1h1v7a1,1,0,0,0,1,1H41a1,1,0,0,0,1-1V47h1a1,1,0,0,0,1-1V42A3,3,0,0,0,41,39ZM30,37h4v2H30ZM40,53H24V47h5v3a1,1,0,0,0,1,1h4a1,1,0,0,0,1-1V47h5Zm-9-6h2v2H31Zm11-2H22V42a1,1,0,0,1,1-1H41a1,1,0,0,1,1,1Z" />
+              <path
+                d="M46,31H42.422a1,1,0,0,1,0-2H46a1,1,0,0,0,.916-1.4A5.992,5.992,0,0,0,36.231,27h-8.04a5.992,5.992,0,0,0-10.685.6,1,1,0,0,0,.916,1.4H22a1,1,0,0,1,0,2H18.422a1,1,0,0,0-.916,1.4,5.992,5.992,0,0,0,10.685.6h8.04a5.992,5.992,0,0,0,10.685-.6A1,1,0,0,0,46,31Zm-4.578,3a4,4,0,0,1-3.662-2.4,1,1,0,0,0-.916-.6H27.578a1,1,0,0,0-.916.6,3.991,3.991,0,0,1-6.3,1.4H22a3,3,0,0,0,0-6H20.359a3.991,3.991,0,0,1,6.3,1.4,1,1,0,0,0,.916.6h9.266a1,1,0,0,0,.916-.6,3.991,3.991,0,0,1,6.3-1.4h-1.64a3,3,0,0,0,0,6h1.64A3.988,3.988,0,0,1,41.422,34Z" />
+            </svg>
+          </div>
+          <h5 class="name">Maintain</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Feature Section end -->
+
+
+  <!-- about section -->
+  <section class="about_section layout_padding-bottom" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-6">
+          <div class="detail-box">
+            <h2>About us</h2>
+            <p>
+              Meet our certified experts devoted to delivering high-quality repair and maintenance services. Committed
+              to customer satisfaction, transparency, and efficiency, we are your reliable partners for seamless
+              solutions. Discover our team's expertise and dedication to ensuring your satisfaction with every service
+              we provide.
+            </p>
+            <a href=""> Read More </a>
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-6">
+          <div class="img-box">
+            <img src="pics/about-img.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end about section -->
+
+
+  <!-- professional section -->
+  <section class="professional_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="pics/professional-img.png" alt="" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <h2>
+              We Provide Professional <br />
+              Home Services.
+            </h2>
+            <p>
+              Experience convenience with our home services. From efficient repairs to proactive maintenance, our
+              certified experts ensure your home functions smoothly. Transparent processes, timely solutions, and a
+              commitment to excellence make us your go-to for reliable and hassle-free home services.
+            </p>
+            <a href=""> Read More </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end professional section -->
+
+
+  <!-- service section -->
+  <section class="service_section layout_padding" id="service">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>Our Services</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src="pics/s1.png" alt="" />
+            </div>
+            <div class="detail-box">
+              <h5>Maintenance</h5>
+              <p>
+                Efficient maintenance by certified experts, ensuring optimal performance. Timely solutions, transparent
+                processes, and a commitment to excellence.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src="pics/s2.png" alt="" />
+            </div>
+            <div class="detail-box">
+              <h5>Electrical</h5>
+              <p>
+                Certified electricians providing reliable, efficient services for your electrical needs. Trustworthy
+                solutions for a well-functioning home or business.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src="pics/s3.png" alt="" />
+            </div>
+            <div class="detail-box">
+              <h5>Plumbing</h5>
+              <p>
+                Expert plumbers ensuring reliable and efficient solutions for all your plumbing needs. Trustworthy
+                solutions for a well-functioning home or business.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="btn-box">
+        <a href=""> View More </a>
+      </div> -->
+    </div>
+  </section>
+  <!-- end service section -->
+
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding" id="contact">
+    <div class="container">
+      <div class="heading_container">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <form action="">
+            <div>
+              <input type="text" placeholder="Name" />
+            </div>
+            <div>
+              <input type="text" placeholder="Phone Number" />
+            </div>
+            <div>
+              <input type="email" placeholder="Email" />
+            </div>
+            <div>
+              <input type="text" class="message-box" placeholder="Message" />
+            </div>
+            <div class="d-flex">
+              <button>SEND</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="map_container">
+            <div class="map">
+              <div id="googleMap" style="width: 100%; height: 100%">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3447.2838990131904!2d74.9364501754755!3d30.228979609804085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391732ebe9967907%3A0x127c2652cb493d7b!2sUJJWAL%20FLEX%20PRINTERS!5e0!3m2!1sen!2sin!4v1699944389287!5m2!1sen!2sin"
+                  width="100%" height="100%" style="border: 0" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+  <!-- info section -->
+  <section class="info_section">
+    <div class="container">
+      <h4>Get In Touch</h4>
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="info_items">
+            <div class="row">
+              <div class="col-md-4">
+                <a href="">
+                  <div class="item">
+                    <div class="img-box">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </div>
+                    <p>Opp. Barnala Bypass, Bathinda</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a href="">
+                  <div class="item">
+                    <div class="img-box">
+                      <i class="fa fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <p>+91 7696240203</p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a href="">
+                  <div class="item">
+                    <div class="img-box">
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <p>mannsaini1111@gmail.com</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="social-box">
+      <h4>Follow Us</h4>
+      <div class="box">
+        <a href="">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+            <g fill="#1f2db7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+              stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+              font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+              <g transform="scale(10.66667,10.66667)">
+                <path
+                  d="M12,2c-5.511,0 -10,4.489 -10,10c0,5.511 4.489,10 10,10c5.511,0 10,-4.489 10,-10c0,-5.511 -4.489,-10 -10,-10zM12,4c4.43012,0 8,3.56988 8,8c0,4.01447 -2.93468,7.31302 -6.78125,7.89844v-5.51367h2.32813l0.36523,-2.36524h-2.69336v-1.29297c0,-0.983 0.32023,-1.85547 1.24023,-1.85547h1.47656v-2.06445c-0.26,-0.035 -0.8087,-0.11133 -1.8457,-0.11133c-2.166,0 -3.43555,1.144 -3.43555,3.75v1.57422h-2.22656v2.36524h2.22656v5.49414c-3.78401,-0.63806 -6.6543,-3.90867 -6.6543,-7.87891c0,-4.43012 3.56988,-8 8,-8z">
+                </path>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a href="">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+            <g fill="#1f2db7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+              stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+              font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+              <g transform="scale(5.33333,5.33333)">
+                <path
+                  d="M42,12.429c-1.323,0.586 -2.746,0.977 -4.247,1.162c1.526,-0.906 2.7,-2.351 3.251,-4.058c-1.428,0.837 -3.01,1.452 -4.693,1.776c-1.344,-1.425 -3.261,-2.309 -5.385,-2.309c-4.08,0 -7.387,3.278 -7.387,7.32c0,0.572 0.067,1.129 0.193,1.67c-6.138,-0.308 -11.582,-3.226 -15.224,-7.654c-0.64,1.082 -1,2.349 -1,3.686c0,2.541 1.301,4.778 3.285,6.096c-1.211,-0.037 -2.351,-0.374 -3.349,-0.914c0,0.022 0,0.055 0,0.086c0,3.551 2.547,6.508 5.923,7.181c-0.617,0.169 -1.269,0.263 -1.941,0.263c-0.477,0 -0.942,-0.054 -1.392,-0.135c0.94,2.902 3.667,5.023 6.898,5.086c-2.528,1.96 -5.712,3.134 -9.174,3.134c-0.598,0 -1.183,-0.034 -1.761,-0.104c3.271,2.071 7.155,3.285 11.324,3.285c13.585,0 21.017,-11.156 21.017,-20.834c0,-0.317 -0.01,-0.633 -0.025,-0.945c1.45,-1.024 2.7,-2.316 3.687,-3.792">
+                </path>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a href="">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+            <g fill="#1f2db7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+              stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+              font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+              <g transform="scale(2.56,2.56)">
+                <path
+                  d="M29,15l5,16v10h4v-10l5,-16h-4l-2.875,10.375h-0.25l-2.875,-10.375zM48.64453,21.5c-1.727,0 -3.09042,0.47392 -4.10742,1.41992c-1.025,0.93 -1.53711,2.19939 -1.53711,3.77539v8.61133c0,1.734 0.49723,3.12148 1.49023,4.14648c1.001,1.026 2.31842,1.54688 3.98242,1.54688c1.727,0 3.07378,-0.49705 4.05078,-1.49805c0.978,-1.001 1.4668,-2.37305 1.4668,-4.12305v-8.56445c0,-1.561 -0.49605,-2.83822 -1.49805,-3.82422c-1.001,-0.993 -2.27966,-1.49023 -3.84766,-1.49023zM57,22v16.4375c0,1.415 1.1465,2.5625 2.5625,2.5625c1.644,0 3.35545,-1.02916 4.43945,-2.28516v2.28516h4v-19h-4.00195v14.20313c-0.64,0.666 -1.466,1.29688 -2.125,1.29688c-0.483,0 -0.875,-0.392 -0.875,-0.875v-14.625zM48.5,25c0.828,0 1.5,0.672 1.5,1.5v9.5c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5v-9.5c0,-0.828 0.672,-1.5 1.5,-1.5zM49.99805,44c-4,0 -8.90805,0.00015 -13.12305,0.06445c-2.1075,0.03215 -4.04074,0.07937 -5.60742,0.15234c-1.56668,0.07297 -2.72216,0.15456 -3.48047,0.31836c-1.80217,0.38894 -3.45747,1.2418 -4.73437,2.51758c-1.27774,1.27661 -2.12874,2.93462 -2.51758,4.73633c-0.20532,0.95187 -0.31254,2.59873 -0.40039,4.83398c-0.08785,2.23526 -0.13477,4.99123 -0.13477,7.87695c0,2.88572 0.04691,5.64157 0.13477,7.87695c0.08785,2.23538 0.19498,3.88231 0.40039,4.83398c0.38893,1.80209 1.24125,3.46 2.51758,4.73633c1.27656,1.27656 2.93222,2.12855 4.73438,2.51758c0.75843,0.16375 1.91367,0.24539 3.48047,0.31836c1.5668,0.07297 3.49993,0.12019 5.60742,0.15234c4.21499,0.06431 9.12355,0.06445 13.12305,0.06445c4,0 8.91171,-0.00015 13.12695,-0.06445c2.10762,-0.03215 4.04065,-0.07937 5.60742,-0.15234c1.56677,-0.07297 2.72019,-0.15456 3.47852,-0.31836c1.80217,-0.38894 3.45942,-1.2418 4.73633,-2.51758c1.27719,-1.2772 2.12872,-2.93454 2.51758,-4.73633c0.20607,-0.95246 0.31241,-2.5988 0.40039,-4.83398c0.08798,-2.23518 0.13477,-4.99073 0.13477,-7.87695v-1h-0.01953c-0.01014,-2.48507 -0.03876,-4.9256 -0.11523,-6.87695c-0.0876,-2.23512 -0.19494,-3.88214 -0.40039,-4.83398c-0.38894,-1.80217 -1.23985,-3.45746 -2.51562,-4.73437c-1.27597,-1.27711 -2.93426,-2.12856 -4.73633,-2.51758h-0.00195c-0.7587,-0.16395 -1.91245,-0.24528 -3.47852,-0.31836c-1.56694,-0.07312 -3.49973,-0.12208 -5.60742,-0.1543c-4.21539,-0.06443 -9.12695,-0.06445 -13.12695,-0.06445zM49.99805,46c4,0 8.90409,0.00039 13.0957,0.06445c2.0958,0.03203 4.01374,0.07894 5.54492,0.15039c1.53118,0.07145 2.72111,0.18448 3.15039,0.27734h0.00195c1.46122,0.31517 2.76459,0.9981 3.74219,1.97656c0.97822,0.97909 1.66151,2.28431 1.97656,3.74414c0.12155,0.56316 0.27127,2.29015 0.35742,4.48828c0.08615,2.19813 0.13086,4.93449 0.13086,7.79883v0.11523c-0.0013,2.81861 -0.04562,5.518 -0.13086,7.68359c-0.08652,2.19807 -0.2355,3.92669 -0.35742,4.49023c-0.31514,1.46021 -0.99776,2.76534 -1.97656,3.74414c-0.97909,0.97822 -2.28431,1.66151 -3.74414,1.97656c-0.42918,0.0927 -1.61932,0.20408 -3.15039,0.27539c-1.53107,0.07131 -3.44917,0.11842 -5.54492,0.15039c-4.19155,0.06395 -9.0957,0.06445 -13.0957,0.06445c-3.9995,0 -8.90054,-0.00051 -13.0918,-0.06445c-2.09563,-0.03197 -4.01382,-0.07908 -5.54492,-0.15039c-1.53111,-0.07131 -2.72082,-0.18264 -3.15039,-0.27539h-0.00195c-1.4611,-0.31515 -2.76317,-0.99755 -3.74219,-1.97656c-0.97767,-0.97767 -1.66149,-2.28423 -1.97656,-3.74414c-0.12159,-0.56332 -0.27102,-2.29187 -0.35742,-4.49023c-0.0864,-2.19837 -0.13281,-4.93455 -0.13281,-7.79883c0,-2.86427 0.04641,-5.60058 0.13281,-7.79883c0.0864,-2.19824 0.23574,-3.9261 0.35742,-4.49023c0.31516,-1.46029 0.99635,-2.76675 1.97461,-3.74414c0.97909,-0.97822 2.28627,-1.6615 3.74609,-1.97656c0.42919,-0.09271 1.61746,-0.20408 3.14844,-0.27539c1.53098,-0.07131 3.44929,-0.11842 5.54492,-0.15039c4.19126,-0.06394 9.09375,-0.06445 13.09375,-0.06445zM26,51v4.06445h4v21.93555h4v-21.93555h4v-4.06445zM52,51v26h4v-0.4707c0.565,0.29 1.196,0.4707 1.875,0.4707c2.278,0 4.125,-1.847 4.125,-4.125v-11.25c0,-2.278 -1.847,-4.125 -4.125,-4.125c-0.679,0 -1.31,0.1807 -1.875,0.4707v-6.9707zM69.5,57.5c-3.038,0 -5.5,2.462 -5.5,5.5v8.5c0,3.038 2.462,5.5 5.5,5.5c3.038,0 5.5,-2.462 5.5,-5.5v-1.5h-4v2.5c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5v-4.5h7v-5c0,-3.038 -2.462,-5.5 -5.5,-5.5zM38,58v16.0625c0,1.622 1.3145,2.9375 2.9375,2.9375c1.771,0 3.18445,-1.154 4.06445,-2v2h4v-19h-4.00195v13.625c0,0 -1.25,1.375 -2.25,1.375c-0.414,0 -0.75,-0.336 -0.75,-0.75v-14.25zM57.1875,61c0.448,0 0.8125,0.3635 0.8125,0.8125v11.375c0,0.448 -0.3645,0.8125 -0.8125,0.8125c-0.813,0 -1.1875,-0.625 -1.1875,-0.625v-11.75c0,0 0.3745,-0.625 1.1875,-0.625zM69.5,61c0.828,0 1.5,0.672 1.5,1.5v2.5h-3v-2.5c0,-0.828 0.672,-1.5 1.5,-1.5z">
+                </path>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a href="">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+            <g fill="#1f2db7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+              stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+              font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+              <g transform="scale(8,8)">
+                <path
+                  d="M11.46875,5c-3.55078,0 -6.46875,2.91406 -6.46875,6.46875v9.0625c0,3.55078 2.91406,6.46875 6.46875,6.46875h9.0625c3.55078,0 6.46875,-2.91406 6.46875,-6.46875v-9.0625c0,-3.55078 -2.91406,-6.46875 -6.46875,-6.46875zM11.46875,7h9.0625c2.47266,0 4.46875,1.99609 4.46875,4.46875v9.0625c0,2.47266 -1.99609,4.46875 -4.46875,4.46875h-9.0625c-2.47266,0 -4.46875,-1.99609 -4.46875,-4.46875v-9.0625c0,-2.47266 1.99609,-4.46875 4.46875,-4.46875zM21.90625,9.1875c-0.50391,0 -0.90625,0.40234 -0.90625,0.90625c0,0.50391 0.40234,0.90625 0.90625,0.90625c0.50391,0 0.90625,-0.40234 0.90625,-0.90625c0,-0.50391 -0.40234,-0.90625 -0.90625,-0.90625zM16,10c-3.30078,0 -6,2.69922 -6,6c0,3.30078 2.69922,6 6,6c3.30078,0 6,-2.69922 6,-6c0,-3.30078 -2.69922,-6 -6,-6zM16,12c2.22266,0 4,1.77734 4,4c0,2.22266 -1.77734,4 -4,4c-2.22266,0 -4,-1.77734 -4,-4c0,-2.22266 1.77734,-4 4,-4z">
+                </path>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayDateYear"></span> All Rights Reserved By
+        Lakshay Bansal and Mahak Saini
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+
+  <!--Sign Up Modal Form -->
+  <form>
+    <!-- Modal -->
+    <div class="modal fade" id="signup_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Up</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="txtEmail" aria-describedby="emailHelp"
+                  placeholder="Enter email">
+                <div id="chk-sign-email" style="font-size: 0.8rem"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="txtPassword" class="form-label">Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" placeholder="Password" id="txtPassword">
+                  <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="signEye"></i></span>
+                </div>
+                <div id="chk-pwd" style="font-size: 0.8rem"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="txtType" class="form-label">Type</label>
+                <select id="txtType" class="form-select" required>
+                  <option selected value="none">Select</option>
+                  <option value="Customer">Customer</option>
+                  <option value="Provider">Service Provider</option>
+                </select>
+              </div>
+          </div>
+
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-primary" id="btnSignup">Sign Up</button>
+            <div id="txtMsg"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- End Signup Modal Form -->
+
+
+  <!--Login Modal Form -->
+  <form>
+    <!-- Modal -->
+    <div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="loginEmail" placeholder="abc@gmail.com">
+              <span id="chk-email" style="font-size: 0.8rem"></span>
+            </div>
+
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" placeholder="Password" id="loginPassword">
+                <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="loginEye"></i></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer flex flex-column justify-content-center">
+            <button type="button" class="btn btn-primary" id="btnlogin">Login</button>
+            <span id="forgetPwd" data-bs-toggle="modal" data-bs-target="#forget_modal">Forget
+              Password ? </span>
+            <div id="txtloginMsg"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- End Login Modal Form -->
+
+  <!--Forget Password Modal Form -->
+  <form>
+    <!-- Modal -->
+    <div class="modal fade" id="forget_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Reset Password</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            
+            <div class="mb-3">
+              <label for="frgtEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="frgtEmail" placeholder="Enter email address">
+            </div>
+
+            <div class="mb-3 display_none" id="frgtDiv">
+              <label for="frgtOtp" class="form-label">Enter Otp</label>
+              <input type="text" class="form-control" id="frgtOtp"
+                placeholder="Enter One Time Passsword sent to your email">
+            </div>
+
+            <div class="mb-3 display_none" id="frgtPwdDiv">
+              <label for="frgtPwd" class="form-label">New Password</label>
+              <input type="password" class="form-control" id="frgtPwd"
+                placeholder="Enter new password">
+            </div>
+
+            <div class="mb-3 display_none" id="frgtConPwdDiv">
+              <label for="frgtConPwd" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="frgtConPwd"
+                placeholder="Re-enter password ">
+            </div>
+
+
+          </div>
+
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-primary" id="btnFrgt">Get Otp</button>
+            <button type="button" class="btn btn-primary display_none" id="btnVerify">Change Password</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- End Forget Password Modal Form -->
+
+
+  <!--Admin Modal Form -->
+  <form>
+    <!-- Modal -->
+    <div class="modal fade" id="admin_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="adminUser" class="form-label">User Name</label>
+              <input type="email" class="form-control" id="adminUser" placeholder="Enter user name">
+            </div>
+
+            <div class="mb-3">
+              <label for="adminPassword" class="form-label">Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" placeholder="Password" id="adminPassword">
+                <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="adminEye"></i></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-primary" id="btnAdmin">Admin Login</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- End Admin Modal Form -->
+
+
+  <script src="JS/jquery-3.4.1.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <script src="JS/index.js"></script>
+
+
+
+</body>
+
+</html>

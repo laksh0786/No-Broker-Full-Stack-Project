@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services Manager</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="CSS/header-footer.css">
+  <link rel="icon" type="image/x-icon" href="pics/index-favi.png" sizes="">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+    integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+
+    const docheckUsr = function () {
+
+      if (localStorage.getItem("activeUser") == undefined) {
+        location.href = "index.html";
+        return;
+      }
+    }
+
+    //=================================================================
+    var module = angular.module("myModule", []);
+
+    module.controller("myController", function ($scope, $http) {
+
+
+      $scope.email = localStorage.getItem("activeUser");
+      $scope.jsonArray;
+
+      $scope.doFetch = function (email) {
+        let url = "/fetch-service-record?angEmail=" + email;
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+          // alert(JSON.stringify(response.data));
+          $scope.jsonArray = response.data;
+        }
+
+        function fail(response) {
+          alert(JSON.stringify(response.data));
+          // console.log((response.data));
+        }
+
+      }
+
+      $scope.doDelete = function (sno) {
+
+        let url = "/delete-service-record?angSno=" + sno;
+
+        $http.get(url).then(done, fail);
+
+        function done(response) {
+          // alert(response.data);
+          $scope.doFetch($scope.email);
+        }
+
+        function fail(response) {
+          alert(JSON.stringify(response.data));
+          // console.log((response.data));
+        }
+
+      }
+
+
+    })
+
+  </script>
+
+</head>
+
+<body style="background-color: white;" ng-app="myModule" ng-controller="myController" onload="">
+
+  <!-- header section strats -->
+  <header class="header_section shadow>
+        <div class= " header_bottom">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <span class="navbar-brand" href="index.html">
+          <span>No Broker</span>
+        </span>
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="dash-customer.html">
+                <button type="button">
+                  Dashboard
+                  <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                  </div>
+                </button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    </div>
+  </header>
+  <!-- end header section -->
+
+  <div class="container mt-4">
+
+    <div class="row justify-content-center">
+      <label for="txtEmail" class="col-1 col-form-label m-0 p-0 text-end pe-2 " style="font-size: 1.3rem;">Email Id
+        :</label>
+      <div class="col-3 me-2 p-0">
+        <input type="email " class="form-control" id="txtEmail" ng-model="email">
+      </div>
+
+      <button type="button" class="btn btn-outline-primary col-1 p-0" ng-click="doFetch(email)">Get Records</button>
+
+    </div>
+
+    <div class="mt-4">
+      <table class="table table-striped table-bordered table-hover text-center">
+
+        <tr>
+          <th>Sr No.</th>
+          <th>Email</th>
+          <th>Type of Service</th>
+          <!-- <th>City</th> -->
+          <th>Charges</th>
+          <th>Avail From</th>
+          <th>Avail To</th>
+          <th>Description</th>
+          <th>Operations</th>
+        </tr>
+
+        <tr ng-repeat="obj in jsonArray">
+
+          <td>{{$index+1}}</td>
+          <td>{{obj.email}}</td>
+          <td>{{obj.type}}</td>
+          <!-- <td>{{obj.city}}</td> -->
+          <td>{{obj.charges}}</td>
+          <td>{{obj.afrom}}</td>
+          <td>{{obj.ato}}</td>
+          <td>{{obj.description}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-primary" ng-click="doDelete(obj.srno)">Unavail</button>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
